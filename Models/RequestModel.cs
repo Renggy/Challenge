@@ -14,7 +14,6 @@ namespace Challenge.Models
         public string nama_barang { get; set; }
         public string spesifikasi { get; set; }
         public int jumlah { get; set; }
-        public string Keterangan { get; set; }
 
     }
 }
