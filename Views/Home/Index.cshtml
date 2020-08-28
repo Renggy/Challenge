@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+@if (Context.Session.GetString("User") != null)
+{
+    <h1 class="h3 mb-4 text-gray-800">Selamat Datang</h1>
+}
+else
+{
+    <h1 class="h3 mb-4 text-gray-800">Access Denied</h1>
+}

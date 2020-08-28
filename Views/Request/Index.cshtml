@@ -1,0 +1,109 @@
+﻿@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+@if (Context.Session.GetString("User") != null)
+{
+    @if (TempData["Request"] != null)
+    {
+        string[] Parse = TempData["Request"].ToString().Split(",");
+        <script>Swal.fire('@Parse[0].ToString()','@Parse[2].ToString()','@Parse[1].ToString()')</script>
+    }
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Permintaan Barang</h1>
+    <p class="mb-4">Pastikan anda memesan permintaan barang untuk kebutuhan anda di kantor bukan untuk kebutuhan pribadi.</p> <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                + Permintaan Baru
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade animated--grow-in" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" asp-action="Tambah" asp-controller="Request">
+                                <input type="hidden" class="form-control" name="id_user" value="@Context.Session.GetInt32("ID_User")" readonly>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nama Barang</label>
+                                    <input type="text" class="form-control" name="nama_barang" required oninvalid="this.setCustomValidity('Masukan Nama Barang')" oninput="setCustomValidity('')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Jumlah</label>
+                                    <input type="number" class="form-control" name="jumlah" required oninvalid="this.setCustomValidity('Masukan Jumlah Barang')" oninput="setCustomValidity('')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Spesifikasi</label>
+                                    <input type="text" class="form-control" name="spesifikasi" required oninvalid="this.setCustomValidity('Masukan Spesifikasi Barang')" oninput="setCustomValidity('')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Link Pembelian</label>
+                                    <input type="text" class="form-control" name="link" required oninvalid="this.setCustomValidity('Masukan Link Pembelian')" oninput="setCustomValidity('')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Keterangan</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Nama Permintaan</th>
+                            <th>Jumlah</th>
+                            <th>Status</th>
+                            <th>Opsi</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Nama Permintaan</th>
+                            <th>Jumlah</th>
+                            <th>Status</th>
+                            <th>Opsi</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h1 class="h3 mb-4 text-gray-800">Access Denied</h1>
+}
+<script>
+
+</script>
